@@ -10,6 +10,7 @@ public class NorthwindCdkStack : Stack
 {
     internal NorthwindCdkStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
     {
+        /*
         // The CDK includes built-in constructs for most resource types, such as Queues and Topics.
         Queue queue = new(this, "NorthwindCdkQueue", new QueueProps
         {
@@ -19,5 +20,6 @@ public class NorthwindCdkStack : Stack
         Topic topic = new(this, "NorthwindCdkTopic");
 
         topic.AddSubscription(new SqsSubscription(queue));
+        */
     }
 }
