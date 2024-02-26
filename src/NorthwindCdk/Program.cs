@@ -1,15 +1,9 @@
 ﻿using Amazon.CDK;
+using NorthwindCdk;
 
-namespace NorthwindCdk
-{
-    sealed class Program
-    {
-        public static void Main(string[] args)
-        {
-            var app = new App();
-            new NorthwindCdkStack(app, "NorthwindCdkStack");
+App app = new();
 
-            app.Synth();
-        }
-    }
-}
+// ReSharper disable once ObjectCreationAsStatement
+new NorthwindCdkStack(app, "NorthwindCdkStack");
+
+app.Synth();

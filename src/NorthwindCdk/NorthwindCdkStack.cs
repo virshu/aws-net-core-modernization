@@ -4,21 +4,20 @@ using Amazon.CDK.AWS.SNS.Subscriptions;
 using Amazon.CDK.AWS.SQS;
 using Constructs;
 
-namespace NorthwindCdk
+namespace NorthwindCdk;
+
+public class NorthwindCdkStack : Stack
 {
-    public class NorthwindCdkStack : Stack
+    internal NorthwindCdkStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
     {
-        internal NorthwindCdkStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
+        // The CDK includes built-in constructs for most resource types, such as Queues and Topics.
+        Queue queue = new(this, "NorthwindCdkQueue", new QueueProps
         {
-             // The CDK includes built-in constructs for most resource types, such as Queues and Topics.
-            var queue = new Queue(this, "NorthwindCdkQueue", new QueueProps
-            {
-                VisibilityTimeout = Duration.Seconds(300)
-            });
+            VisibilityTimeout = Duration.Seconds(300)
+        });
 
-            var topic = new Topic(this, "NorthwindCdkTopic");
+        Topic topic = new(this, "NorthwindCdkTopic");
 
-            topic.AddSubscription(new SqsSubscription(queue));
-        }
+        topic.AddSubscription(new SqsSubscription(queue));
     }
 }
